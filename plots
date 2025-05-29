@@ -1,0 +1,71 @@
+clc
+clear all
+close all
+
+up=csvread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MU\1.csv');
+down=csvread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MD\1.csv');
+right=csvread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MR\1.csv');
+left=csvread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\ML\1.csv');
+blink=csvread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MP\1.csv');
+fix=csvread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\CN\1.csv');
+
+up_e=up(:,1)-up(:,2);
+do_e=down(:,1)-down(:,2);
+ri_e=right(:,1)-right(:,2);
+le_e=left(:,1)-left(:,2);
+bl_e=blink(:,1)-blink(:,2);
+fix_e=fix(:,1)-fix(:,2);
+
+figure
+plot(up_e,'b');
+ylabel('Up eye mevement');
+xlabel('Samples');
+
+figure
+plot(do_e,'b')
+ylabel('Down eye mevement');
+ xlabel('Samples');
+figure
+plot(ri_e,'b')
+ylabel('Right eye mevement');
+xlabel('Samples');
+figure
+plot(le_e,'b');
+ylabel('Left eye mevement');
+ xlabel('Samples');
+figure
+plot(bl_e,'b');
+ylabel('Blinking eye mevement');
+xlabel('Samples');
+figure
+plot(fix_e,'b');
+ylabel('Centered fixed eyes');
+xlabel('Samples');
+
+% Now plotting first four EWT-FBSE-Modes for EMG signal of each category
+params = EWTDefaultParams(120);
+[~,~,~,~,up_fbimf,~,~]=FBexp(up_e,params);
+[~,~,~,~,down_fbimf,~,~]=FBexp(do_e,params);
+[~,~,~,~,right_fbimf,~,~]=FBexp(ri_e,params);
+[~,~,~,~,left_fbimf,~,~]=FBexp(le_e,params);
+[~,~,~,~,blink_fbimf,~,~]=FBexp(bl_e,params);
+[~,~,~,~,fix_fbimf,~,~]=FBexp(fix_e,params);
+
+
+for i=[1 3]
+mode=up_fbimf{i,1};
+figure(i)
+
+plot(mode,'b');
+ylabel(strcat('FBIMF_',num2str(i)));
+% xlabel('Samples');
+end
+
+
+up_fbimf{2,1};
+up_fbimf{3,1};
+up_fbimf{4,1};
+
+
+
+
