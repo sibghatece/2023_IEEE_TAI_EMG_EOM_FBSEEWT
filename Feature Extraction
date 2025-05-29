@@ -1,0 +1,139 @@
+clc
+clear all
+close all
+win_len=48; % 200 ms (24 samples)
+sliding_len=24 ; %100 ms overlap "Evaluation of surface EMG-based recognition algorithms for decoding hand movements"
+path = fullfile('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MU\'); %Path Where audio file are stored
+files = dir(path);
+for fileIndex=1:length(files)   % For reading all files in the folder
+    if (files(fileIndex).isdir == 0)
+        if (~isempty(strfind(files(fileIndex).name,'csv'))) % 
+            fullfile(path,files(fileIndex).name)%
+             s=csvread(fullfile(path,files(fileIndex).name));
+             sig=s(:,1)-s(:,2);
+             sig_av=(s(:,1)-s(:,2)/2);
+             
+             feat_MU(fileIndex-2,:)=features_temporal_emg(sig_av,win_len,sliding_len);
+             feat_MU_MFCC(fileIndex-2,:)=features_mfcc(sig_av);
+             feat_MU_MFSC(fileIndex-2,:)=features_mfsc(sig_av);
+
+
+        end
+    end
+end
+
+path = fullfile('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MR\'); %Path Where audio file are stored
+files = dir(path);
+for fileIndex=1:length(files)   % For reading all files in the folder
+    if (files(fileIndex).isdir == 0)
+        if (~isempty(strfind(files(fileIndex).name,'csv'))) % 
+            fullfile(path,files(fileIndex).name)%
+             s=csvread(fullfile(path,files(fileIndex).name));
+             sig=s(:,1)-s(:,2);
+             sig_av=(s(:,1)-s(:,2)/2);
+             
+             feat_MR(fileIndex-2,:)=features_temporal_emg(sig_av,win_len,sliding_len);
+             feat_MR_MFCC(fileIndex-2,:)=features_mfcc(sig_av);
+             feat_MR_MFSC(fileIndex-2,:)=features_mfsc(sig_av);
+
+        end
+    end
+end
+
+path = fullfile('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MP\'); %Path Where audio file are stored
+files = dir(path);
+for fileIndex=1:length(files)   % For reading all files in the folder
+    if (files(fileIndex).isdir == 0)
+        if (~isempty(strfind(files(fileIndex).name,'csv'))) % 
+            fullfile(path,files(fileIndex).name)%
+             s=csvread(fullfile(path,files(fileIndex).name));
+             sig=s(:,1)-s(:,2);
+             sig_av=(s(:,1)-s(:,2)/2);
+             
+             feat_MP(fileIndex-2,:)=features_temporal_emg(sig_av,win_len,sliding_len);
+             feat_MP_MFCC(fileIndex-2,:)=features_mfcc(sig_av);
+             feat_MP_MFSC(fileIndex-2,:)=features_mfsc(sig_av);
+
+        end
+    end
+end
+
+path = fullfile('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\ML\'); %Path Where audio file are stored
+files = dir(path);
+for fileIndex=1:length(files)   % For reading all files in the folder
+    if (files(fileIndex).isdir == 0)
+        if (~isempty(strfind(files(fileIndex).name,'csv'))) % 
+            fullfile(path,files(fileIndex).name)%
+             s=csvread(fullfile(path,files(fileIndex).name));
+             sig=s(:,1)-s(:,2);
+             sig_av=(s(:,1)-s(:,2)/2);
+             
+             feat_ML(fileIndex-2,:)=features_temporal_emg(sig_av,win_len,sliding_len);
+             feat_ML_MFCC(fileIndex-2,:)=features_mfcc(sig_av);
+             feat_ML_MFSC(fileIndex-2,:)=features_mfsc(sig_av);
+
+        end
+    end
+end
+
+path = fullfile('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\CN\'); %Path Where audio file are stored
+files = dir(path);
+for fileIndex=1:length(files)   % For reading all files in the folder
+    if (files(fileIndex).isdir == 0)
+        if (~isempty(strfind(files(fileIndex).name,'csv'))) % 
+            fullfile(path,files(fileIndex).name)%
+             s=csvread(fullfile(path,files(fileIndex).name));
+             sig=s(:,1)-s(:,2);
+             sig_av=(s(:,1)-s(:,2)/2);
+             
+             feat_CN(fileIndex-2,:)=features_temporal_emg(sig_av,win_len,sliding_len);
+             feat_CN_MFCC(fileIndex-2,:)=features_mfcc(sig_av);
+             feat_CN_MFSC(fileIndex-2,:)=features_mfsc(sig_av);
+
+        end
+    end
+end
+
+
+path = fullfile('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\MD\'); %Path Where audio file are stored
+files = dir(path);
+for fileIndex=1:length(files)   % For reading all files in the folder
+    if (files(fileIndex).isdir == 0)
+        if (~isempty(strfind(files(fileIndex).name,'csv'))) % 
+            fullfile(path,files(fileIndex).name)%
+             s=csvread(fullfile(path,files(fileIndex).name));
+             sig=s(:,1)-s(:,2);
+             sig_av=(s(:,1)-s(:,2)/2);
+             
+             feat_MD(fileIndex-2,:)=features_temporal_emg(sig_av,win_len,sliding_len);
+             
+             feat_MD_MFCC(fileIndex-2,:)=features_mfcc(sig_av);
+             feat_MD_MFSC(fileIndex-2,:)=features_mfsc(sig_av);
+        end
+    end
+end
+
+
+feat_TD=[feat_MU;feat_MR;feat_MP;feat_ML;feat_CN;feat_MD];
+feat_TFD_MFCC=[feat_MU feat_MU_MFCC;feat_MR feat_MR_MFCC;feat_MP feat_MP_MFCC;...
+               feat_ML feat_ML_MFCC;feat_CN feat_CN_MFCC;feat_MD feat_MD_MFCC];
+feat_TFD_MFSC=[feat_MU feat_MU_MFSC;feat_MR feat_MR_MFSC;feat_MP feat_MP_MFSC;...
+               feat_ML feat_ML_MFSC;feat_CN feat_CN_MFSC;feat_MD feat_MD_MFSC];
+
+
+MU_l=(repelem(1,100,1));
+MR_l=(repelem(2,100,1));
+MP_l=(repelem(3,100,1));
+ML_l=(repelem(4,100,1));
+CN_l=(repelem(5,100,1));
+MD_l=(repelem(6,100,1));
+labels=[MU_l;MR_l;MP_l;ML_l;CN_l;MD_l];
+combine_FM_TD=[feat_TD labels];
+combine_FM_TFD1=[feat_TFD_MFCC labels];
+combine_FM_TFD2=[feat_TFD_MFSC labels];
+xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\First_Revision_IEEE THMS\Temporal_400ms_200ms.xlsx',combine_FM_TD);
+xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\First_Revision_IEEE THMS\Feat_TFD1_TD_MFCC.xlsx',combine_FM_TFD1);
+xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\First_Revision_IEEE THMS\Feat_TFD2_TD_MFSC.xlsx',combine_FM_TFD2);
+
+
+
