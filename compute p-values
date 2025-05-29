@@ -1,0 +1,103 @@
+clc
+clear all
+close all
+
+FS12=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\SelectedFS\12.xlsx');
+
+FS15=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\SelectedFS\15.xlsx');
+
+FS36=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\SelectedFS\36.xlsx');
+
+
+F1_C1=FS12(1:100,:);
+F1_C2=FS12(101:200,:);
+F1_C3=FS12(201:300,:);
+F1_C4=FS12(301:400,:);
+F1_C5=FS12(401:500,:);
+F1_C6=FS12(501:600,:);
+
+
+%Computing p-Values for FS12 (4 Features-)
+for i=1:4
+    p1(i)=kruskalwallis([F1_C1(:,i) F1_C2(:,i) F1_C3(:,i) F1_C4(:,i) F1_C5(:,i) F1_C6(:,i)]);
+end
+% xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\DrQaisar_ECG_Paper\ECG_MS_Data_64Samples\p_Values_FS11.xlsx',p1);
+p_FS_12=p1';
+
+% For FS15 (16 Features_)
+F15_C1=FS15(1:100,:);
+F15_C2=FS15(101:200,:);
+F15_C3=FS15(201:300,:);
+F15_C4=FS15(301:400,:);
+F15_C5=FS15(401:500,:);
+F15_C6=FS15(501:600,:);
+for i=1:16
+    p15(i)=kruskalwallis([F15_C1(:,i) F15_C2(:,i) F15_C3(:,i) F15_C4(:,i) F15_C5(:,i) F15_C6(:,i)] );
+end
+p_FS_15=p15';
+
+% xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\DrQaisar_ECG_Paper\ECG_MS_Data_64Samples\p_Values_FS05.xlsx',p2);
+
+% For FS36 (16 Features -)
+F36_C1=FS36(1:100,:);
+F36_C2=FS36(101:200,:);
+F36_C3=FS36(201:300,:);
+F36_C4=FS36(301:400,:);
+F36_C5=FS36(401:500,:);
+F36_C6=FS36(501:600,:);
+for i=1:16
+    p36(i)=kruskalwallis([F36_C1(:,i) F36_C2(:,i) F36_C3(:,i) F36_C4(:,i) F36_C5(:,i) F36_C6(:,i) ]);
+end
+p_FS_36=p36';
+
+close all
+% xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\DrQaisar_ECG_Paper\ECG_MS_Data_64Samples\p_Values_FS12.xlsx',p3)
+
+
+%% Extended 
+% FS1=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Dr Qaisar Transaction work\Extended_SF_Files\1.xlsx');
+% 
+% FS8=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Dr Qaisar Transaction work\Extended_SF_Files\8.xlsx');
+% 
+% FS12=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Dr Qaisar Transaction work\Extended_SF_Files\12.xlsx');
+% 
+% 
+% F1_C1=FS1(1:450,:);
+% F1_C2=FS1(451:900,:);
+% F1_C3=FS1(901:1350,:);
+% F1_C4=FS1(1351:1800,:);
+% F1_C5=FS1(1801:2250,:);
+% 
+% 
+% %Computing p-Values for FS1 (23 Features-MPA Algorithm)
+% for i=1:23
+%     p1_ex(i)=kruskalwallis([F1_C1(:,i) F1_C2(:,i) F1_C3(:,i) F1_C4(:,i) F1_C5(:,i)]);
+% end
+% % xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\DrQaisar_ECG_Paper\ECG_MS_Data_64Samples\p_Values_FS11.xlsx',p1);
+% p_Ex_FS_1=p1_ex';
+% 
+% % For FS8 (18 features Henry Gas Solubility Optimization)
+% F8_C1=FS8(1:450,:);
+% F8_C2=FS8(451:900,:);
+% F8_C3=FS8(901:1350,:);
+% F8_C4=FS8(1351:1800,:);
+% F8_C5=FS8(1801:2250,:);
+% for i=1:18
+%     p8_ext(i)=kruskalwallis([F8_C1(:,i) F8_C2(:,i) F8_C3(:,i) F8_C4(:,i) F8_C5(:,i)]);
+% end
+% p_Ex_FS_8=p8_ext';
+% 
+% % xlswrite('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\DrQaisar_ECG_Paper\ECG_MS_Data_64Samples\p_Values_FS05.xlsx',p2);
+% 
+% % For FS12 (21 Features - Emperor Penguin Optimization Algorithm)
+% F12_C1=FS12(1:450,:);
+% F12_C2=FS12(451:900,:);
+% F12_C3=FS12(901:1350,:);
+% F12_C4=FS12(1351:1800,:);
+% F12_C5=FS12(1801:2250,:);
+% for i=1:21
+%     p12_ext(i)=kruskalwallis([F12_C1(:,i) F12_C2(:,i) F12_C3(:,i) F12_C4(:,i) F12_C5(:,i)]);
+% end
+% p_Ex_FS_12=p12_ext';
+
+close all
