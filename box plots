@@ -1,0 +1,107 @@
+clc
+clear all
+close all
+
+FS12=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\SelectedFS\12.xlsx');
+FS15=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\SelectedFS\15.xlsx');
+FS36=xlsread('C:\Users\Sibghatullah\Documents\WROK\Covid Papers\Eye ELECTROMYOGRAPHY (EMG) OF THE EXTRAOCULAR MUSCLES (EOM) paper\SelectedFS\36.xlsx');
+
+
+mu12=FS12(1:100,:);
+md12=FS12(101:200,:);
+mr12=FS12(201:300,:);
+ml12=FS12(301:400,:);
+mb12=FS12(401:500,:);
+mf12=FS12(501:600,:);
+
+mu15=FS15(1:100,:);
+md15=FS15(101:200,:);
+mr15=FS15(201:300,:);
+ml15=FS15(301:400,:);
+mb15=FS15(401:500,:);
+mf15=FS15(501:600,:);
+
+%% FS 12
+figure
+boxplot([mu12(:,1) mu12(:,2) mu12(:,3) mu12(:,4)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4'}) ;      
+ xlabel('Statistical attributes of UP eye movement');
+ ylabel('Range of features');
+
+ figure
+boxplot([md12(:,1) md12(:,2) md12(:,3) md12(:,4)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4'}) ;      
+ xlabel('Statistical attributes of DOWN eye movement');
+ ylabel('Range of features');
+ 
+ figure
+boxplot([mr12(:,1) mr12(:,2) mr12(:,3) mr12(:,4)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4'}) ;      
+ xlabel('Statistical attributes of RIGHT eye movement');
+ ylabel('Range of features');
+ 
+ figure
+boxplot(log([ml12(:,1) ml12(:,2) ml12(:,3) ml12(:,4)]),'Symbol','w');
+ xticklabels({'F1','F2','F3','F4'}) ;      
+ xlabel('Statistical attributes of LEFT eye movement');
+ ylabel('Range of features');
+ 
+ figure
+boxplot([mb12(:,1) mb12(:,2) mb12(:,3) mb12(:,4)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4'}) ;      
+ xlabel('Statistical attributes of BLINKING eye movement');
+ ylabel('Range of features');
+
+ figure
+boxplot([mf12(:,1) mf12(:,2) mf12(:,3) mf12(:,4)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4'}) ;      
+ xlabel('Statistical attributes of FIX eyes (no movement)');
+ ylabel('Range of features');
+ 
+%% FS 15
+
+figure
+boxplot([mu15(:,1) mu15(:,2) mu15(:,3) mu15(:,4) mu15(:,5) mu15(:,6) mu15(:,7) mu15(:,8)...
+    mu15(:,9) mu15(:,10) mu15(:,11) mu15(:,12) mu15(:,13) mu15(:,14) mu15(:,15) mu15(:,16)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','F13','F14','F15','F16'}) ;      
+ xlabel('Statistical attributes of UP eye movement');
+ ylabel('Range of features');
+
+ figure
+boxplot([md15(:,1) md15(:,2) md15(:,3) md15(:,4) md15(:,5) md15(:,6) md15(:,7) md15(:,8)...
+    md15(:,9) md15(:,10) md15(:,11) md15(:,12) md15(:,13) md15(:,14) md15(:,15) md15(:,16)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','F13','F14','F15','F16'}) ;       
+ xlabel('Statistical attributes of DOWN eye movement');
+ ylabel('Range of features');
+ 
+ figure
+figure
+boxplot([mr15(:,1) mr15(:,2) mr15(:,3) mr15(:,4) mr15(:,5) mr15(:,6) mr15(:,7) mr15(:,8)...
+    mr15(:,9) mr15(:,10) mr15(:,11) mr15(:,12) mr15(:,13) mr15(:,14) mr15(:,15) mr15(:,16)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','F13','F14','F15','F16'}) ;    
+ xlabel('Statistical attributes of RIGHT eye movement');
+ ylabel('Range of features');
+ 
+ figure
+figure
+boxplot([ml15(:,1) ml15(:,2) ml15(:,3) ml15(:,4) ml15(:,5) ml15(:,6) ml15(:,7) ml15(:,8)...
+    ml15(:,9) ml15(:,10) ml15(:,11) ml15(:,12) ml15(:,13) ml15(:,14) ml15(:,15) ml15(:,16)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','F13','F14','F15','F16'}) ;       
+ xlabel('Statistical attributes of LEFT eye movement');
+ ylabel('Range of features');
+ 
+
+figure
+boxplot([mb15(:,1) mb15(:,2) mb15(:,3) mb15(:,4) mb15(:,5) mb15(:,6) mb15(:,7) mb15(:,8)...
+    mb15(:,9) mb15(:,10) mb15(:,11) mb15(:,12) mb15(:,13) mb15(:,14) mb15(:,15) mb15(:,16)],'Symbol','w');
+ xticklabels({'F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','F13','F14','F15','F16'}) ;       
+ xlabel('Statistical attributes of BLINKING eye movement');
+ ylabel('Range of features');
+
+
+figure
+boxplot(log([mf15(:,1) mf15(:,2) mf15(:,3) mf15(:,4) mf15(:,5) mf15(:,6) mf15(:,7) mf15(:,8)...
+    mf15(:,9) mf15(:,10) mf15(:,11) mf15(:,12) mf15(:,13) mf15(:,14) mf15(:,15) mf15(:,16)]),'Symbol','w');
+ xticklabels({'F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','F13','F14','F15','F16'}) ;      
+ xlabel('Statistical attributes of FIX eyes (no movement)');
+ ylabel('Range of features');
